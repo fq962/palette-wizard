@@ -7,6 +7,10 @@ import React from "react";
 import "./searchBar.css";
 
 export default function SearchBar() {
+  const generatePalette = () => {
+    console.log("Generate palette");
+  };
+
   return (
     <div className="searchBar">
       <input
@@ -14,7 +18,9 @@ export default function SearchBar() {
         type="text"
         placeholder="#ffff, baby blue, destist app"
       />
-      <button className="btn-generate">Generate</button>
+      <button className="btn-generate" onClick={generatePalette}>
+        Generate
+      </button>
     </div>
   );
 }

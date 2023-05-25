@@ -1,4 +1,5 @@
 import "./App.css";
+import ColorCard from "./app/components/color-card/colorCard";
 import SearchBar from "./app/components/search-bar/searchBar";
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
       </div>
       <div className="search-bar-container">
         <SearchBar />
+      </div>
+      <div className="color-card-container">
+        <ColorCard />
       </div>
     </>
   );
