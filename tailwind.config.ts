@@ -14,6 +14,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        "sf-display": ["var(--font-sf-display)", "sans-serif"],
+      },
     },
   },
   plugins: [
