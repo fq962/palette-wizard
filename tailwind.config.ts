@@ -16,7 +16,7 @@ export default {
     },
   },
   plugins: [
-    (await import("flyonui")).default,
+    require("flyonui"),
     // (await import("flyonui/plugin")).default, // Require only if you want to use FlyonUI JS component
   ],
 } satisfies Config;
