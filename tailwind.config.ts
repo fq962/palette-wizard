@@ -16,6 +16,7 @@ export default {
       },
       fontFamily: {
         "sf-display": ["var(--font-sf-display)", "sans-serif"],
+        "sf-display-bold": ["var(--font-sf-display-bold)", "sans-serif"],
       },
     },
   },
