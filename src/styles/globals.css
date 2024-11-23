@@ -5,6 +5,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #252525;
+  --secondary: #808080;
+  --accent: #597a6f;
+  --neutral: #b4b4b4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +17,10 @@
     --foreground: #ededed; */
     --background: #ffffff;
     --foreground: #171717;
+    --primary: #252525;
+    --secondary: #808080;
+    --accent: #597a6f;
+    --neutral: #b4b4b4;
   }
 }
 
