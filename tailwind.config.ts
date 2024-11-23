@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import flyonui from "flyonui";
 
 export default {
   content: [
@@ -16,7 +17,7 @@ export default {
     },
   },
   plugins: [
-    require("flyonui"),
+    flyonui,
     // (await import("flyonui/plugin")).default, // Require only if you want to use FlyonUI JS component
   ],
 } satisfies Config;
