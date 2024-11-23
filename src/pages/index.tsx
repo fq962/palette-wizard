@@ -1,9 +1,12 @@
+import { Hero } from "@/components/layout/Hero";
+import { SearchTheme } from "@/components/Search";
 import { Title } from "@/components/Title";
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-screen-lg mt-12">
+    <Hero>
       <Title></Title>
-    </main>
+      <SearchTheme></SearchTheme>
+    </Hero>
   );
 }
