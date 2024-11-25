@@ -1,3 +1,5 @@
+import { GenerateColorPalette } from "@/utils/features/GenerateColorPalette";
+
 export const SearchTheme = () => (
   <article className="flex flex-col gap-2">
     <search className="flex gap-2 h-12">
@@ -14,6 +16,8 @@ export const SearchTheme = () => (
       <div className="tooltip">
         <button
           className="tooltip-toggle btn btn-square btn-primary size-12 shadow-flat"
+          // TODO! Remove this onClick event, it's only for demonstration purposes
+          onClick={() => GenerateColorPalette({ baseColor: "#a35a00" })}
           aria-label="Reload"
         >
           <span className="icon-[tabler--reload]"></span>
