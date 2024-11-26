@@ -11,9 +11,14 @@ export const PaletteCard = ({ color, name, textColor }: PaletteCardProps) => {
 
   const handleCopyClick = () => {
     setIsCopied(true); // Mostrar "Copied"
+    copyToClipboard(); // Copiar al portapapeles
     setTimeout(() => {
       setIsCopied(false); // Volver al ícono después de 1.5 segundos
     }, 800);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(color);
   };
 
   return (
@@ -43,7 +48,7 @@ export const PaletteCard = ({ color, name, textColor }: PaletteCardProps) => {
         ></span>
         {isCopied && (
           <span
-            className="opacity-80 font-bold translate-y-[-20px] -rotate-6 text-base-content/80 absolute bottom-8 transition-opacity duration-500"
+            className="opacity-80 font-bold translate-y-[-20px] -rotate-6 text-base-content/80 absolute bottom-8 transition-opacity duration-500 animate-chibolita-exit"
             style={{ color: textColor }}
           >
             copied!
