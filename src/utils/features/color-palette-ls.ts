@@ -5,6 +5,10 @@ const PALETTE_COLOR_KEY = "palettes";
 export const addColorPaletteToLocalStorage = (palette: ColorPalette) => {
   const palettes = getColorPaletteFromLocalStorage() || [];
 
+  const isPaletteExist = palettes.some((p) => p.summary === palette.summary);
+
+  if (isPaletteExist) return;
+
   palettes.unshift(palette);
   localStorage.setItem(PALETTE_COLOR_KEY, JSON.stringify(palettes));
 };

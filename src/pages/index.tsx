@@ -39,7 +39,12 @@ export default function Home() {
   return (
     <Hero>
       <Title />
-      <SearchTheme handleSearch={handleSearch} />
+      <SearchTheme
+        handleSearch={handleSearch}
+        handleChangeColorPalette={(palette) => {
+          setColorPalette(palette);
+        }}
+      />
       {colorPalette && <PaletteList palette={colorPalette} />}
     </Hero>
   );

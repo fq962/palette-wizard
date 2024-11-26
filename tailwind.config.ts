@@ -26,6 +26,22 @@ export default {
       boxShadow: {
         flat: "0px 2px 0px 0px rgba(0, 0, 0, 0.25)",
       },
+      animation: {
+        "chibolita-enter": "chibolitaEnter 0.3s ease-out forwards",
+        "chibolita-exit": "chibolitaExit 0.3s ease-in forwards",
+      },
+      keyframes: {
+        chibolitaEnter: {
+          "0%": { transform: "scale(0) translateY(-45%)", opacity: "0" },
+          "50%": { transform: "scale(1.02)", opacity: "1" }, // Rebote inicial
+          "100%": { transform: "scale(1) translateY(0)", opacity: "1" },
+        },
+        chibolitaExit: {
+          "0%": { transform: "scale(1) translateY(0)", opacity: "1" },
+          "50%": { transform: "scale(1.05)", opacity: "0.8" }, // Rebote antes de desaparecer
+          "100%": { transform: "scale(0) translateY(-35%)", opacity: "0" },
+        },
+      },
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
