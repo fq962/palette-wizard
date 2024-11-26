@@ -6,4 +6,5 @@ export interface ColorPalette {
 export interface ColorPaletteEntry {
   colorHex: string;
   colorName: string;
+  textColor: string;
 }

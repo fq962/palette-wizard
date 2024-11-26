@@ -29,6 +29,9 @@ export default async function handler(
         Dado una frase, idea, un color o descripción, genera exclusivamente un JSON que represente una paleta de colores con cinco colores
         y una frase en ingles que represente la paleta generada puedes usar emojis.
 
+        También, para cada color, incluye el color del texto, es decir, si el color de fondo es oscuro, el color del texto debe ser claro y viceversa, usa ya sea un blanco suave o un negro suave.
+
+
         El JSON de ejemplo:
 
         {
@@ -38,22 +41,27 @@ export default async function handler(
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
+                textColor: "#FFFFFF",
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
+                textColor: "#FFFFFF",
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
+                textColor: "#FFFFFF",
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
+                textColor: "#000000",
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
+                textColor: "#000000",
                 },
             ],
         }
