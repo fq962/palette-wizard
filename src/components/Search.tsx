@@ -54,45 +54,50 @@ export const SearchTheme = ({
               disabled={loading}
             />
           </label>
-          <div
-            className={`absolute top-14 left-0 w-full bg-white rounded-md p-2 z-50 border shadow-flat
-              transition-all ${
-                isTyping ? "animate-chibolita-enter" : "animate-chibolita-exit"
-              }`}
-          >
-            {/* Lista de las últimas búsquedas */}
-            <ul className="flex flex-col gap-6 xl:gap-2">
-              <li>
-                <h5 className="opacity-75 font-sf-display-bold">
-                  Recent searches
-                </h5>
-              </li>
-              {
-                // Maximo 3 busquedas
-                recentPalettes.slice(0, 3).map((palette, idx) => (
-                  <li
-                    key={idx}
-                    className="flex flex-col xl:flex-row gap-2 justify-between p-1 rounded-md cursor-pointer font-sf-display opacity-75 hover:opacity-100 transition-colors duration-150 ease-in-out hover:bg-gray-200"
-                    onClick={() => handleChangeColorPalette(palette)}
-                  >
-                    {palette.summary}
-                    <span className="flex justify-between items-center gap-2">
-                      <span className="flex gap-2 items-center">
-                        {palette.colorPalette.map((color, idx) => (
-                          <span
-                            key={idx}
-                            className="size-3 rounded-full"
-                            style={{ backgroundColor: color.colorHex }}
-                          ></span>
-                        ))}
+          {/* Lista de las últimas búsquedas */}
+          {recentPalettes.length > 0 && (
+            <div
+              className={`absolute top-14 left-0 w-full bg-white rounded-md p-2 z-50 border shadow-flat
+                transition-all ${
+                  isTyping
+                    ? "animate-chibolita-enter"
+                    : "animate-chibolita-exit"
+                }`}
+            >
+              {/* Lista de las últimas búsquedas */}
+              <ul className="flex flex-col gap-6 xl:gap-2">
+                <li>
+                  <h5 className="opacity-75 font-sf-display-bold">
+                    Recent searches
+                  </h5>
+                </li>
+                {
+                  // Maximo 3 busquedas
+                  recentPalettes.slice(0, 3).map((palette, idx) => (
+                    <li
+                      key={idx}
+                      className="flex flex-col xl:flex-row gap-2 justify-between p-1 rounded-md cursor-pointer font-sf-display opacity-75 hover:opacity-100 transition-colors duration-150 ease-in-out hover:bg-gray-200"
+                      onClick={() => handleChangeColorPalette(palette)}
+                    >
+                      {palette.summary}
+                      <span className="flex justify-between items-center gap-2">
+                        <span className="flex gap-2 items-center">
+                          {palette.colorPalette.map((color, idx) => (
+                            <span
+                              key={idx}
+                              className="size-3 rounded-full"
+                              style={{ backgroundColor: color.colorHex }}
+                            ></span>
+                          ))}
+                        </span>
+                        <span className="icon-[tabler--arrow-right] ml-3"></span>
                       </span>
-                      <span className="icon-[tabler--arrow-right] ml-3"></span>
-                    </span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          )}
         </div>
         {/* <div className="tooltip">
           <button
