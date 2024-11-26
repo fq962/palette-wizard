@@ -1,6 +1,6 @@
 import { ColorPalette } from "@/types/color-palette";
 import { getColorPaletteFromLocalStorage } from "@/utils/features/color-palette-ls";
-import { GenerateColorPalette } from "@/utils/features/GenerateColorPalette";
+// import { GenerateColorPalette } from "@/utils/features/GenerateColorPalette";
 import { useEffect, useState } from "react";
 
 interface SearchThemeProps {
@@ -46,7 +46,7 @@ export const SearchTheme = ({
               className="input input-lg grow focus:placeholder:opacity-25 transition-all duration-150 ease-in-out disabled:text-black/25 font-sf-display"
               placeholder="Search"
               onFocus={() => setIsTyping(true)}
-              onBlur={() => setTimeout(() => setIsTyping(false), 50)} // Delay
+              onBlur={() => setTimeout(() => setIsTyping(false), 100)} // Delay
               onKeyUp={(e) => {
                 if (e.key === "Enter")
                   handleSearch((e.target as HTMLInputElement).value);
@@ -94,7 +94,7 @@ export const SearchTheme = ({
             </ul>
           </div>
         </div>
-        <div className="tooltip">
+        {/* <div className="tooltip">
           <button
             className="tooltip-toggle btn btn-square btn-primary size-12 shadow-flat"
             // TODO! Remove this onClick event, it's only for demonstration purposes
@@ -109,7 +109,7 @@ export const SearchTheme = ({
           >
             <span className="tooltip-body">Reload</span>
           </span>
-        </div>
+        </div> */}
       </search>
       {loading ? (
         <small className="font-sf-display opacity-75">
