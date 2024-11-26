@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 interface SearchThemeProps {
   handleSearch: (query: string) => void;
   handleChangeColorPalette: (palette: ColorPalette) => void;
+  loading: boolean;
 }
 
 export const SearchTheme = ({
   handleSearch,
   handleChangeColorPalette,
+  loading,
 }: SearchThemeProps) => {
   const [isTyping, setIsTyping] = useState(false);
   const [recentPalettes, setRecentPalettes] = useState<ColorPalette[]>([]);
@@ -19,6 +21,17 @@ export const SearchTheme = ({
     const paletts = getColorPaletteFromLocalStorage();
     if (paletts) setRecentPalettes(paletts);
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const paletts = getColorPaletteFromLocalStorage();
+      if (paletts) setRecentPalettes(paletts);
+    }
+
+    if (loading) {
+      setIsTyping(false);
+    }
+  }, [loading]);
 
   return (
     <article className="flex flex-col gap-2">
@@ -30,7 +43,7 @@ export const SearchTheme = ({
             </span>
             <input
               type="search"
-              className="input input-lg grow focus:placeholder:opacity-25 transition-all duration-150 ease-in-out"
+              className="input input-lg grow focus:placeholder:opacity-25 transition-all duration-150 ease-in-out disabled:text-black/25 font-sf-display"
               placeholder="Search"
               onFocus={() => setIsTyping(true)}
               onBlur={() => setTimeout(() => setIsTyping(false), 50)} // Delay
@@ -38,6 +51,7 @@ export const SearchTheme = ({
                 if (e.key === "Enter")
                   handleSearch((e.target as HTMLInputElement).value);
               }}
+              disabled={loading}
             />
           </label>
           <div
@@ -97,13 +111,19 @@ export const SearchTheme = ({
           </span>
         </div>
       </search>
-      <small className="font-sf-display opacity-75">
-        Meet Pallete Wizard, the AI-powered tool that turns your ideas into
-        stunning color palettes.
-        <br />
-        🎨✨ Copy your favorite shades or seamlessly add them to your Tailwind
-        project. Colors that inspire, creativity unleashed!
-      </small>
+      {loading ? (
+        <small className="font-sf-display opacity-75">
+          Generating color palettes... 🎨✨
+        </small>
+      ) : (
+        <small className="font-sf-display opacity-75">
+          Meet Pallete Wizard, the AI-powered tool that turns your ideas into
+          stunning color palettes.
+          <br />
+          🎨✨ Copy your favorite shades or seamlessly add them to your Tailwind
+          project. Colors that inspire, creativity unleashed!
+        </small>
+      )}
     </article>
   );
 };

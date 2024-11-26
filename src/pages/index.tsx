@@ -12,8 +12,12 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [colorPalette, setColorPalette] = useState<ColorPalette | null>(null);
+  const [fetchingPalette, setFetchingPalette] = useState(false);
 
   const handleSearch = async (query: string) => {
+    if (fetchingPalette) return;
+
+    setFetchingPalette(true);
     try {
       const paletteColor = await getPaletteByQuery(query);
 
@@ -21,6 +25,8 @@ export default function Home() {
       if (!paletteColor.success) console.error(paletteColor.message);
     } catch (error) {
       console.error(error);
+    } finally {
+      setFetchingPalette(false);
     }
   };
 
@@ -44,6 +50,7 @@ export default function Home() {
         handleChangeColorPalette={(palette) => {
           setColorPalette(palette);
         }}
+        loading={fetchingPalette}
       />
       {colorPalette && <PaletteList palette={colorPalette} />}
     </Hero>
