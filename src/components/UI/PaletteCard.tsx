@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export const PaletteCard = () => {
+interface PaletteCardProps {
+  color: string;
+  name: string;
+}
+
+export const PaletteCard = ({ color, name }: PaletteCardProps) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyClick = () => {
@@ -11,13 +16,16 @@ export const PaletteCard = () => {
   };
 
   return (
-    <div className="card sm:max-w-44 h-52 bg-[#E6F4E6] group relative overflow-hidden">
+    <div
+      className="card sm:max-w-44 h-52 group relative overflow-hidden shadow-flat"
+      style={{ backgroundColor: color }}
+    >
       <div className="card-body flex flex-col items-center justify-center h-full relative transition-all duration-500">
         <h5 className="card-title mb-2.5 opacity-80 group-hover:translate-y-[-10px] transition-transform duration-500">
-          #E6F4E6
+          {color}
         </h5>
         <p className="opacity-80 group-hover:opacity-0 group-hover:translate-y-[-10px] transition-all duration-500">
-          Honeydow
+          {name}
         </p>
         <span
           className={`${
@@ -26,8 +34,8 @@ export const PaletteCard = () => {
           onClick={handleCopyClick}
         ></span>
         {isCopied && (
-          <span className="opacity-80 font-bold translate-y-[-20px] text-base-content/80 absolute bottom-8 transition-opacity duration-500">
-            copied
+          <span className="opacity-80 font-bold translate-y-[-20px] -rotate-6 text-base-content/80 absolute bottom-8 transition-opacity duration-500">
+            copied!
           </span>
         )}
       </div>
