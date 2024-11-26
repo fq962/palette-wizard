@@ -31,7 +31,9 @@ export default async function handler(
 
         También, para cada color, incluye el color del texto, es decir, si el color de fondo es oscuro, el color del texto debe ser claro y viceversa, usa ya sea un blanco suave o un negro suave.
 
-        El summary devuelvelo en un idioma acorde al input del usuario, si el input está en español, devuelve el summary y los nombres de los colores en español, al igual para los demás idiomas.
+        El summary devuelvelo en un idioma acorde al input del usuario, si el input está en español, devuelve el summary y los nombres de los colores en español, al igual para los demás idiomas;
+        si no reconoces claramente el idioma según el input del usuario, utilizá el idioma inglés por defecto.
+
 
 
         El JSON de ejemplo:
