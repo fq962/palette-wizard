@@ -37,7 +37,7 @@ export const SearchTheme = ({
     <article className="flex flex-col gap-2">
       <search className="flex gap-2 h-12">
         <div className="flex flex-col gap-2 w-full relative">
-          <label className="input-group w-full shadow-flat transition-all duration-150 ease-in-out">
+          <label className="input-group w-full shadow-flat transition-all duration-150 ease-in-out bg-gray-100 has-[:focus]:bg-white">
             <span className="input-group-text">
               <span className="icon-[tabler--search] text-base-content/80 size-6"></span>
             </span>
