@@ -53,27 +53,30 @@ export const SearchTheme = ({
                   Recent searches
                 </h5>
               </li>
-              {recentPalettes.map((palette, idx) => (
-                <li
-                  key={idx}
-                  className="flex flex-col xl:flex-row gap-2 justify-between p-1 rounded-md cursor-pointer font-sf-display opacity-75 hover:opacity-100 transition-colors duration-150 ease-in-out hover:bg-gray-200"
-                  onClick={() => handleChangeColorPalette(palette)}
-                >
-                  {palette.summary}
-                  <span className="flex justify-between items-center gap-2">
-                    <span className="flex gap-2 items-center">
-                      {palette.colorPalette.map((color, idx) => (
-                        <span
-                          key={idx}
-                          className="size-3 rounded-full"
-                          style={{ backgroundColor: color.colorHex }}
-                        ></span>
-                      ))}
+              {
+                // Maximo 3 busquedas
+                recentPalettes.slice(0, 3).map((palette, idx) => (
+                  <li
+                    key={idx}
+                    className="flex flex-col xl:flex-row gap-2 justify-between p-1 rounded-md cursor-pointer font-sf-display opacity-75 hover:opacity-100 transition-colors duration-150 ease-in-out hover:bg-gray-200"
+                    onClick={() => handleChangeColorPalette(palette)}
+                  >
+                    {palette.summary}
+                    <span className="flex justify-between items-center gap-2">
+                      <span className="flex gap-2 items-center">
+                        {palette.colorPalette.map((color, idx) => (
+                          <span
+                            key={idx}
+                            className="size-3 rounded-full"
+                            style={{ backgroundColor: color.colorHex }}
+                          ></span>
+                        ))}
+                      </span>
+                      <span className="icon-[tabler--arrow-right] ml-3"></span>
                     </span>
-                    <span className="icon-[tabler--arrow-right] ml-3"></span>
-                  </span>
-                </li>
-              ))}
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
