@@ -2,6 +2,7 @@ import { Hero } from "@/components/layout/Hero";
 import { PaletteList } from "@/components/PaletteList";
 import { SearchTheme } from "@/components/Search";
 import { Title } from "@/components/Title";
+import { SinglePaletteCard } from "@/components/UI/SinglePaletteCard";
 import { getPaletteByQuery } from "@/services/get-palette-by-query";
 import { ColorPalette } from "@/types/color-palette";
 import {
@@ -13,6 +14,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [colorPalette, setColorPalette] = useState<ColorPalette | null>(null);
   const [fetchingPalette, setFetchingPalette] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   const handleSearch = async (query: string) => {
     if (fetchingPalette) return;
@@ -28,6 +30,10 @@ export default function Home() {
     } finally {
       setFetchingPalette(false);
     }
+  };
+
+  const toggleSinglePaletteCard = (color: string | null) => {
+    setSelectedColor((prevColor) => (prevColor === color ? null : color));
   };
 
   useEffect(() => {
@@ -52,7 +58,13 @@ export default function Home() {
         }}
         loading={fetchingPalette}
       />
-      {colorPalette && <PaletteList palette={colorPalette} />}
+      {colorPalette && (
+        <PaletteList
+          palette={colorPalette}
+          onSelectColor={toggleSinglePaletteCard}
+        />
+      )}
+      {selectedColor && <SinglePaletteCard color={selectedColor} />}
     </Hero>
   );
 }

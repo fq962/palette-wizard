@@ -4,9 +4,15 @@ interface PaletteCardProps {
   color: string;
   name: string;
   textColor: string;
+  onSelectColor: (color: string) => void; // Nuevo callback para manejar el clic
 }
 
-export const PaletteCard = ({ color, name, textColor }: PaletteCardProps) => {
+export const PaletteCard = ({
+  color,
+  name,
+  textColor,
+  onSelectColor,
+}: PaletteCardProps) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyClick = () => {
@@ -14,7 +20,7 @@ export const PaletteCard = ({ color, name, textColor }: PaletteCardProps) => {
     copyToClipboard(); // Copiar al portapapeles
     setTimeout(() => {
       setIsCopied(false); // Volver al ícono después de 1.5 segundos
-    }, 800);
+    }, 900);
   };
 
   const copyToClipboard = () => {
@@ -24,6 +30,7 @@ export const PaletteCard = ({ color, name, textColor }: PaletteCardProps) => {
   return (
     <div
       className="card sm:max-w-44 h-52 group relative overflow-hidden shadow-flat"
+      onClick={() => onSelectColor(color)} // Llamar al callback al hacer clic
       style={{ backgroundColor: color }}
     >
       <div className="card-body flex flex-col items-center justify-center h-full relative transition-all duration-500">
