@@ -1,40 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🎨 Palette Wizard
 
-## Getting Started
+This project is a web application developed in **Next.js 15** that uses artificial intelligence to generate customized color palettes. Users can use this tool for personal commercial purposes, leveraging an intuitive experience and accurate results.
 
-First, run the development server:
+## 📦 Technologies Used
+
+- **Next.js 15**
+- **Node.js 22**
+- **Bun**
+- **TypeScript**
+- **Tailwind CSS**
+- **OpenAI API** (or another AI tool)
+
+---
+
+## 🚀 Prerequisites
+
+Before starting, make sure you have installed:
+
+- **Node.js 22** (or higher).
+- **bun**, **npm**, **yarn**, or **pnpm** (depending on your preferred package manager).
+
+---
+
+## 📋 Project Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/fq962/palette-wizard]
+cd [palette-wizard]
+```
+
+### 2. Configure Environment Variables
+
+The project requires a `.env.local` file to manage sensitive keys and configurations.
+
+1. **Copy the example file**:
+   ```bash
+   cp .env.example .env.local
+   ```
+2. **Edit the `.env.local` file** and add your keys:
+
+   ```plaintext
+   # Example variables in .env.local
+   API_KEY=your_api_key
+   NEXT_PUBLIC_BASE_URL=YOUR_API_KEY
+   ```
+3. **IMPORTANT**: Do not share this file or include it in version control.
+
+---
+
+## 💻 Installation Instructions
+
+### 3. Install Dependencies
+
+With **bun**:
+
+```bash
+bun install
+```
+
+With **npm**:
+
+```bash
+npm install
+```
+
+With **yarn**:
+
+```bash
+yarn install
+```
+
+With **pnpm**:
+
+```bash
+pnpm install
+```
+
+### 4. Run the Project in Development
+
+```bash
+bun run dev
+```
+
+Or with other package managers:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+yarn dev
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Access the application at `http://localhost:3000`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Available Commands
 
-## Learn More
+- **`bun run dev`**: Starts the server in development mode.
+- **`bun run build`**: Builds the application for production.
+- **`bun start`**: Starts the application in production mode.
+- **`bun run lint`**: Runs the linter to detect errors.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 🌍 Production Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Run the following command to build the application:
+   ```bash
+   bun run build
+   ```
+2. Start the built application:
+   ```bash
+   bun start
+   ```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+This project is under the [Custom License of HAIDE and CRYWHAT](./LICENSE.MD). See the `LICENSE.MD` file for more details on the terms of use.
+
+---
+
+## 📞 Contact
+
+For more information or support, contact:
+
+- **HAIDE and CRYWHAT**
+- Websites: [https://dfquintanilla.dev] or [https://crywhat.site]

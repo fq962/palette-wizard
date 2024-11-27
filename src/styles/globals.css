@@ -29,3 +29,10 @@ body {
   background: var(--background) !important;
   font-family: Inter, Arial, Helvetica, sans-serif;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

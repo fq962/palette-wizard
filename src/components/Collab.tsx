@@ -29,7 +29,7 @@ export default function Collab() {
 
   return (
     <>
-      <div className="w-full h-full flex justify-center items-center sm:justify-end sm:p-8 gap-3">
+      <div className="flex justify-center items-center gap-2">
         {users.map((user) => (
           <Collaborator key={user.login} gitUser={user} />
         ))}
