@@ -27,8 +27,8 @@ Before starting, make sure you have installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/fq962/palette-wizard]
-cd [palette-wizard]
+git clone https://github.com/fq962/palette-wizard
+cd palette-wizard
 ```
 
 ### 2. Configure Environment Variables
@@ -126,7 +126,7 @@ Access the application at `http://localhost:3000`.
 
 ## 📄 License
 
-This project is under the [Custom License of HAIDE and CRYWHAT](./LICENSE.MD). See the `LICENSE.MD` file for more details on the terms of use.
+This project is under the **Custom License of HAIDE and CRYWHAT**. See the `LICENSE.MD` file for more details on the terms of use.
 
 ---
 
