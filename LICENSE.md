@@ -1,36 +1,36 @@
-LICENCIA DE USO DE PALETTE WIZARD
+# PALETTE WIZARD USAGE LICENSE
 
-Copyright (c) 2024 HAIDE y CRYWHAT. Todos los derechos reservados.
+Copyright (c) 2024 HAIDE and CRYWHAT. All rights reserved.
 
-Esta obra está licenciada bajo los términos de **Creative Commons Atribución 4.0 Internacional (CC BY 4.0)**, con las siguientes condiciones adicionales específicas para el software.
+This work is licensed under the terms of the **Creative Commons Attribution 4.0 International (CC BY 4.0)**, with the following additional specific conditions for the software.
 
-### 1. Permisos Generales
-   - Se permite el uso de la herramienta para fines personales, educativos y comerciales.
-   - Los resultados generados con esta herramienta pueden ser utilizados, publicados y distribuidos con fines comerciales o no comerciales.
+### 1. General Permissions
+- The use of the tool is permitted for personal, educational, and commercial purposes.
+- The results generated with this tool may be used, published, and distributed for commercial or non-commercial purposes.
 
-### 2. Restricciones Adicionales
-   - **Prohibida la Venta del Software:** Queda prohibida la venta, sublicencia, redistribución o cualquier forma de comercialización directa del software, ya sea como producto independiente o como parte de otro software.
-   - **Prohibida la Modificación del Código:** No se permite descompilar, realizar ingeniería inversa, modificar ni crear obras derivadas del software.
-   - **Prohibida la Distribución del Software:** No se permite la distribución del software en ninguna plataforma pública o privada, salvo autorización expresa de HAIDE y CRYWHAT.
+### 2. Additional Restrictions
+- **Sale of the Software Prohibited:** The sale, sublicensing, redistribution, or any form of direct commercialization of the software is prohibited, whether as an independent product or as part of other software.
+- **Modification of the Code Prohibited:** Decompiling, reverse engineering, modifying, or creating derivative works of the software is not allowed.
+- **Distribution of the Software Prohibited:** Distribution of the software on any public or private platform is not allowed without the express authorization of HAIDE and CRYWHAT.
 
-### 3. Atribución
-   - Se requiere una atribución adecuada al usar la herramienta o sus resultados públicamente. La atribución debe incluir:
-     _"Generado con la herramienta de paletas de colores de HAIDE y CRYWHAT"._
-   - Si la atribución se incluye en un contexto en línea, se recomienda incluir un enlace a la página oficial del proyecto.
+### 3. Attribution
+- Proper attribution is required when using the tool or its results publicly. The attribution must include:
+  _"Generated with the color palette tool by HAIDE and CRYWHAT."_
+- If the attribution is included in an online context, it is recommended to include a link to the project's official page.
 
-### 4. Limitación de Responsabilidad
-   - EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍAS DE NINGÚN TIPO, YA SEA EXPRESA O IMPLÍCITA, INCLUYENDO, PERO NO LIMITADO A, GARANTÍAS DE COMERCIALIZACIÓN, ADECUACIÓN PARA UN PROPÓSITO PARTICULAR O NO INFRACCIÓN. EN NINGÚN CASO LOS AUTORES SERÁN RESPONSABLES POR NINGÚN DAÑO DERIVADO DEL USO O LA IMPOSIBILIDAD DE USAR EL SOFTWARE.
+### 4. Limitation of Liability
+- THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY DAMAGES ARISING FROM THE USE OR INABILITY TO USE THE SOFTWARE.
 
-### 5. Jurisdicción y Ley Aplicable
-   - Esta licencia será interpretada y regulada de acuerdo con las leyes de [país o región], y cualquier disputa se resolverá en los tribunales competentes de dicha jurisdicción.
+### 5. Jurisdiction and Applicable Law
+- This license shall be interpreted and governed in accordance with the laws of [country or region], and any disputes shall be resolved in the competent courts of such jurisdiction.
 
 ---
 
-### Información Adicional
+### Additional Information
 
-Para más detalles sobre esta licencia, contacta a:
-- **HAIDE y CRYWHAT**
-- [Correo electrónico de contacto o sitio web oficial]
+For more details about this license, contact:
+- **HAIDE and CRYWHAT**
+- [Contact email or official website]
 
-O consulta la versión completa de la licencia CC BY 4.0 en:
+Or consult the full version of the CC BY 4.0 license at:
 https://creativecommons.org/licenses/by/4.0/
