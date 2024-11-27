@@ -49,12 +49,13 @@ export function GenerateColorPalette(props: { baseColor: string }) {
       rgb.b * (1 - factor * 0.8)
     );
   }
-  const palete = {
-    colors: {
-      brand: palette,
-    },
-  };
-  console.log("palette: ", palete);
+
+  // Remove the last 6 entries from the palette
+  const shadesToRemove = [650, 700, 750, 800, 850, 900, 950];
+
+  shadesToRemove.forEach((shade) => {
+    delete palette[shade];
+  });
 
   return {
     colors: {

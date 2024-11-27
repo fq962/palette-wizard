@@ -3,10 +3,12 @@ import { PaletteCard } from "./UI/PaletteCard";
 
 interface PaletteListProps {
   palette: ColorPalette;
+  onSelectColor: (color: string) => void; // Nuevo callback para manejar la selección
 }
 
 export const PaletteList = ({
   palette: { colorPalette, summary },
+  onSelectColor,
 }: PaletteListProps) => (
   <main className="flex flex-col gap-2">
     <header>
@@ -19,6 +21,7 @@ export const PaletteList = ({
           color={colorHex}
           name={colorName}
           textColor={textColor}
+          onSelectColor={onSelectColor}
         />
       ))}
     </div>
