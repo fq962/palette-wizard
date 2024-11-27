@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import "@/styles/globals.css";
+import { AnimatePresence } from "motion/react";
 import type { AppProps } from "next/app";
 
 import localFont from "next/font/local";
@@ -18,12 +19,14 @@ const sfDisplayBold = localFont({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <main
-        className={`${sfDisplayRegular.variable} ${sfDisplayBold.variable}`}
-      >
-        <Component {...pageProps} />
-      </main>
-    </Layout>
+    <AnimatePresence mode="wait">
+      <Layout>
+        <main
+          className={`${sfDisplayRegular.variable} ${sfDisplayBold.variable}`}
+        >
+          <Component {...pageProps} />
+        </main>
+      </Layout>
+    </AnimatePresence>
   );
 }
