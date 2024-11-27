@@ -29,6 +29,7 @@ export default {
       animation: {
         "chibolita-enter": "chibolitaEnter 0.3s ease-out forwards",
         "chibolita-exit": "chibolitaExit 0.3s ease-in forwards",
+        "slide-up": "slideUp 0.2s ease-in-out",
       },
       keyframes: {
         chibolitaEnter: {
@@ -40,6 +41,10 @@ export default {
           "0%": { transform: "scale(1) translateY(0)", opacity: "1" },
           "50%": { transform: "scale(1.05)", opacity: "0.8" }, // Rebote antes de desaparecer
           "100%": { transform: "scale(0) translateY(-35%)", opacity: "0" },
+        },
+        slideUp: {
+          "0%": { transform: "translateY(10px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
       },
     },

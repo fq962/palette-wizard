@@ -16,6 +16,60 @@ export const SearchTheme = ({
 }: SearchThemeProps) => {
   const [isTyping, setIsTyping] = useState(false);
   const [recentPalettes, setRecentPalettes] = useState<ColorPalette[]>([]);
+  const [placeholder, setPlaceholder] = useState("");
+  const [loadingMessage, setLoadingMessage] = useState("");
+
+  useEffect(() => {
+    const placeholders = [
+      "Search for 'Ocean waves' or 'Retro vibes'",
+      "Explore 'Autumn tones' or 'Spring bloom'",
+      "Find palettes for 'Website UI' or 'Interior decor'",
+      "Look up 'Forest greens' or 'Mountain mist'",
+      "Try 'Calm blues' or 'Energetic reds'",
+      "Search for 'Japanese zen' or 'Tropical vibes'",
+      "Type 'Christmas cheer' or 'Halloween spooky'",
+      "Look for 'Wedding whites' or 'Birthday fun'",
+      "Discover palettes inspired by 'Desert sunsets'",
+      "Start with 'Soft pink' or 'Deep navy'",
+      "Search for 'Vintage tones' or 'Futuristic neon'",
+      "Explore 'Golden hour' or 'Lunar glow'",
+      "Find 'Candy shop' or 'Stormy skies'",
+      "Type 'Peach sorbet' or 'Velvet night'",
+      "Look up 'Rainbow magic' or 'Chocolate delight'",
+    ];
+
+    // Seleccionar un placeholder aleatorio
+    const randomPlaceholder =
+      placeholders[Math.floor(Math.random() * placeholders.length)];
+    setPlaceholder(randomPlaceholder);
+  }, []); // Ejecuta al montar el componente
+
+  useEffect(() => {
+    if (!loading) {
+      setLoadingMessage("Generating color palettes... 🎨✨");
+      return;
+    }
+    const messages = [
+      "Stealing Van Gogh's palette... 🎨",
+      "Recreating the colors of the rainbow... 🌈",
+      "Mixing paints like Picasso... 🖌️",
+      "Drawing inspiration from the stars... ✨",
+      "Finding hues that spark joy... 🌟",
+      "Generating magic shades... 🪄",
+      "Exploring deep blues and vivid reds... 🔵🔴",
+      "Designing the perfect gradient... 🌄",
+      "Unleashing your inner artist... 👩‍🎨",
+      "Picking colors from a dream... 💤",
+    ];
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setLoadingMessage(messages[index]);
+      index = (index + 1) % messages.length; // Ciclo infinito
+    }, 3000);
+
+    return () => clearInterval(interval); // Limpieza al desmontar
+  }, [loading]);
 
   useEffect(() => {
     const paletts = getColorPaletteFromLocalStorage();
@@ -44,7 +98,7 @@ export const SearchTheme = ({
             <input
               type="search"
               className="input input-lg grow focus:placeholder:opacity-25 transition-all duration-150 ease-in-out disabled:text-black/25 font-sf-display"
-              placeholder="Search"
+              placeholder={placeholder.toLowerCase()}
               onFocus={() => setIsTyping(true)}
               onBlur={() => setTimeout(() => setIsTyping(false), 100)} // Delay
               onKeyUp={(e) => {
@@ -52,6 +106,7 @@ export const SearchTheme = ({
                   handleSearch((e.target as HTMLInputElement).value);
               }}
               disabled={loading}
+              maxLength={125}
             />
           </label>
           {/* Lista de las últimas búsquedas */}
@@ -117,8 +172,11 @@ export const SearchTheme = ({
         </div> */}
       </search>
       {loading ? (
-        <small className="font-sf-display opacity-75">
-          Generating color palettes... 🎨✨
+        <small
+          className="font-sf-display opacity-75 transition-all duration-500 ease-in-out transform animate-slide-up"
+          key={loadingMessage}
+        >
+          {loadingMessage || "Generating color palettes... 🎨✨"}
         </small>
       ) : (
         <small className="font-sf-display opacity-75">
