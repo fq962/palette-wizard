@@ -2,10 +2,9 @@ import { ColorPalette } from "@/types/color-palette";
 import RecentSearches from "./RecentSearches";
 import { useEffect, useRef, useState } from "react";
 import { useRandomPlaceholder } from "@/hooks/use-random-placeholder";
-import { useLoadingMessages } from "@/hooks/use-loading-messages";
-import { LOADING_MESSAGES } from "@/constants/loading-messages";
 import { getColorPaletteFromLocalStorage } from "@/utils/features/color-palette-ls";
 import { PLACEHOLDERS } from "@/constants/placeholders";
+import CustomLoadingMessage from "./CustomLoadingMessage";
 
 interface SearchThemeProps {
   handleSearch: (query: string) => void;
@@ -23,11 +22,6 @@ export const SearchTheme = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const placeholder = useRandomPlaceholder(PLACEHOLDERS);
-  const loadingMessage = useLoadingMessages(
-    loading,
-    LOADING_MESSAGES,
-    "Generating color palettes... 🎨✨"
-  );
 
   useEffect(() => {
     const palettes = getColorPaletteFromLocalStorage();
@@ -71,9 +65,7 @@ export const SearchTheme = ({
         </div>
       </div>
       {loading ? (
-        <small className="font-sf-display opacity-75 transition-all duration-500 ease-in-out transform animate-slide-up">
-          {loadingMessage}
-        </small>
+        <CustomLoadingMessage />
       ) : (
         <small className="font-sf-display opacity-75">
           Meet Palette Wizard, the AI-powered tool that turns your ideas into
