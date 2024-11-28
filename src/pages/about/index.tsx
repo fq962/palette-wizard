@@ -13,7 +13,7 @@ export default function About() {
     >
       <Hero>
         <Title />
-        <main className="mx-auto max-w-full xl:max-w-[600px]">
+        <main className="mx-auto max-w-full xl:max-w-screen-xl">
           <h1 className="text-4xl font-sf-display-bold opacity-90 leading-snug mb-6">
             About
           </h1>
@@ -52,18 +52,18 @@ export default function About() {
               based on user-defined themes, pushing the boundaries of{" "}
               <em>creativity</em> and <em>technology</em>.
             </p>
-            <span className="flex xl:flex-col gap-2 w-full items-center justify-center mb-6">
+            <span className="flex gap-2 w-full items-center justify-center mb-6">
               <Image
                 src="/haide.webp"
                 alt="Haide's avatar"
-                className="size-24 object-cover rounded-md"
+                className="size-24 object-cover rounded-md pointer-events-none"
                 width={256}
                 height={256}
               />
               <Image
                 src="/crywhat.webp"
                 alt="Crywhat's avatar"
-                className="size-24 object-cover rounded-md"
+                className="size-24 object-cover rounded-md pointer-events-none"
                 width={256}
                 height={256}
               />
@@ -127,6 +127,15 @@ export default function About() {
             something we&apos;re truly proud of—and we&apos;re excited to share
             it with you.
           </p>
+          <footer className="flex justify-center my-12">
+            <Image
+              src="https://cdn.prod.website-files.com/6335b33630f88833a92915fc/63ee477e4688e939cf07c4c3_phbadge.svg"
+              alt="Product of the day"
+              width={128}
+              height={128}
+              className="pointer-events-none"
+            ></Image>
+          </footer>
         </main>
       </Hero>
     </motion.div>
