@@ -27,34 +27,36 @@ export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
   const colors: Record<number, string> = palette ? palette.colors.brand : {};
 
   return (
-    <div className="w-full pt-8">
-      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-9 lg:grid-cols-10 gap-6">
+    <div className="w-full flex items-center pt-8">
+      <div className="grid grid-cols-11 gap-2 w-full">
         {Object.entries(colors).map(([index, color]) => (
-          <div
-            key={index}
-            className="aspect-square group relative rounded-lg shadow-sm flex items-center justify-center h-14 w-20 transition-all duration-500"
-            style={{ backgroundColor: color }}
-          >
-            {/* Texto del color */}
-            <span className="text-xs font-mono text-gray-800 px-2 py-1 rounded opacity-80 transition-transform duration-500 group-hover:translate-y-[-10px]">
-              {color}
-            </span>
-
-            {/* Ícono de copiar */}
-            {copiedCardIndex !== Number(index) && (
-              <span
-                onClick={() => handleCopyClick(color, Number(index))}
-                className="opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-[10px] bottom-3 transition-all duration-500 text-gray-700 icon-[tabler--copy] absolute"
-              ></span>
-            )}
-
-            {/* Texto "Copied" */}
-            {copiedCardIndex === Number(index) && (
-              <span className="opacity-80 font-bold translate-y-[-20px] -rotate-6 text-base-content/80 absolute bottom-2 transition-opacity duration-500 animate-chibolita-exit">
-                Copied!
+          <article className="flex flex-col gap-1" key={index}>
+            <div
+              className="w-full group relative rounded-lg shadow-sm flex items-center justify-center h-14 col-span-1 transition-all duration-500"
+              style={{ backgroundColor: color }}
+            >
+              {/* Texto del color */}
+              <span className="text-xs text-gray-800 px-2 py-1 rounded opacity-80 transition-transform duration-500 group-hover:translate-y-[-10px] font-sf-display">
+                {color}
               </span>
-            )}
-          </div>
+
+              {/* Ícono de copiar */}
+              {copiedCardIndex !== Number(index) && (
+                <span
+                  onClick={() => handleCopyClick(color, Number(index))}
+                  className="opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-[10px] bottom-3 transition-all duration-500 text-gray-700 icon-[tabler--copy] absolute"
+                ></span>
+              )}
+
+              {/* Texto "Copied" */}
+              {copiedCardIndex === Number(index) && (
+                <span className="opacity-80 font-bold translate-y-[-20px] -rotate-6 text-base-content/80 absolute bottom-2 transition-opacity duration-500 animate-chibolita-exit font-sf-display">
+                  copied!
+                </span>
+              )}
+            </div>
+            <small className="font-sf-display opacity-50">{index}</small>
+          </article>
         ))}
       </div>
     </div>

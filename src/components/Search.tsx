@@ -54,8 +54,10 @@ export const SearchTheme = ({
               onFocus={() => setIsTyping(true)}
               onBlur={() => setTimeout(() => setIsTyping(false), 100)}
               onKeyUp={(e) => {
-                if (e.key === "Enter")
+                if (e.key === "Enter") {
                   handleSearch((e.target as HTMLInputElement).value);
+                  setIsTyping(false);
+                }
               }}
               disabled={loading}
               maxLength={125}

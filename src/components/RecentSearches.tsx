@@ -15,7 +15,9 @@ const RecentSearches = ({
   return (
     <div
       className={`absolute top-14 left-0 w-full bg-white rounded-md p-2 z-50 border shadow-flat transition-all ${
-        isTyping ? "animate-chibolita-enter" : "animate-chibolita-exit"
+        isTyping
+          ? "animate-chibolita-enter opacity-95"
+          : "animate-chibolita-exit opacity-0"
       }`}
     >
       <ul className="flex flex-col gap-6 xl:gap-2">

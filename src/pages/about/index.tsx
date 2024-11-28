@@ -13,7 +13,7 @@ export default function About() {
     >
       <Hero>
         <Title />
-        <main>
+        <main className="mx-auto max-w-full xl:max-w-[600px]">
           <h1 className="text-4xl font-sf-display-bold opacity-90 leading-snug mb-6">
             About
           </h1>
@@ -52,7 +52,7 @@ export default function About() {
               based on user-defined themes, pushing the boundaries of{" "}
               <em>creativity</em> and <em>technology</em>.
             </p>
-            <span className="flex gap-2 w-full items-center justify-center mb-6">
+            <span className="flex xl:flex-col gap-2 w-full items-center justify-center mb-6">
               <Image
                 src="/haide.webp"
                 alt="Haide's avatar"

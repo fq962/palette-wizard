@@ -1,65 +1,61 @@
-function hexToRgb(hex: string) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
+import { hexToHSL } from "./hex-to-hsl";
+import { HSLToHex } from "./hsl-to-hex";
+
+function calculateL(valorInicial: number) {
+  const posiciones = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  const luminosidadMin = 15; // Luminosidad mínima en 950
+  const luminosidadMax = 97; // Luminosidad máxima en 50
+  const posicionInicial = 500; // Posición donde el valor inicial no se modifica
+
+  // Cálculo de la pendiente hacia abajo (500 a 950)
+  const mArriba = (luminosidadMin - valorInicial) / (950 - posicionInicial);
+  // Cálculo de la pendiente hacia arriba (50 a 500)
+  const mAbajo = (valorInicial - luminosidadMax) / (posicionInicial - 50);
+
+  // Generar las luminosidades
+  return posiciones.map((posicion) => {
+    let luminosidad;
+    if (posicion < posicionInicial) {
+      luminosidad = mAbajo * (posicion - posicionInicial) + valorInicial;
+    } else if (posicion > posicionInicial) {
+      luminosidad = mArriba * (posicion - posicionInicial) + valorInicial;
+    } else {
+      luminosidad = valorInicial; // Mantener el valor inicial en 500
+    }
+    return {
+      posicion,
+      l: parseFloat(luminosidad.toFixed(2)),
+    };
+  });
 }
 
-function rgbToHex(r: number, g: number, b: number) {
-  return (
-    "#" +
-    ((1 << 24) + (Math.round(r) << 16) + (Math.round(g) << 8) + Math.round(b))
-      .toString(16)
-      .slice(1)
-      .toUpperCase()
-  );
-}
+export function GenerateColorPalette({ baseColor }: { baseColor: string }) {
+  const colorPalette: Record<number, string> = {
+    50: "",
+    100: "",
+    200: "",
+    300: "",
+    400: "",
+    500: baseColor,
+    600: "",
+    700: "",
+    800: "",
+    900: "",
+    950: "",
+  };
 
-export function GenerateColorPalette(props: { baseColor: string }) {
-  const { baseColor } = props;
-  const rgb = hexToRgb(baseColor);
-  if (!rgb) return null;
+  const { h, s, l } = hexToHSL(baseColor);
 
-  //   const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
-  const palette: Record<number, string> = {};
+  const luminosidades = calculateL(l);
 
-  // Set the base color (500)
-  palette[500] = "#" + baseColor.replace("#", "").toUpperCase();
-
-  // Generate lighter shades (50-400)
-  for (let shade = 400; shade >= 50; shade -= 50) {
-    const factor = (500 - shade) / 450; // Normalize to get a factor between 0 and 1
-    palette[shade] = rgbToHex(
-      rgb.r + (255 - rgb.r) * factor * 0.9, // Multiply by 0.9 to prevent pure white
-      rgb.g + (255 - rgb.g) * factor * 0.9,
-      rgb.b + (255 - rgb.b) * factor * 0.9
-    );
-  }
-
-  // Generate darker shades (600-950)
-  for (let shade = 600; shade <= 950; shade += 50) {
-    const factor = (shade - 500) / 450; // Normalize to get a factor between 0 and 1
-    palette[shade] = rgbToHex(
-      rgb.r * (1 - factor * 0.8),
-      rgb.g * (1 - factor * 0.8),
-      rgb.b * (1 - factor * 0.8)
-    );
-  }
-
-  // Remove the last 6 entries from the palette
-  const shadesToRemove = [650, 700, 750, 800, 850, 900, 950];
-
-  shadesToRemove.forEach((shade) => {
-    delete palette[shade];
+  // Generar los colores para cada luminosidad
+  luminosidades.forEach(({ posicion, l }) => {
+    colorPalette[posicion] = HSLToHex(h, s, l);
   });
 
   return {
     colors: {
-      brand: palette,
+      brand: colorPalette,
     },
   };
 }
