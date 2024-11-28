@@ -28,11 +28,14 @@ export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
 
   return (
     <div className="w-full flex items-center pt-8">
-      <div className="grid grid-cols-11 gap-2 w-full">
+      <div className="grid grid-cols-12 xl:grid-cols-11 gap-2 w-full">
         {Object.entries(colors).map(([index, color]) => (
-          <article className="flex flex-col gap-1" key={index}>
+          <article
+            className="flex flex-col gap-1 col-span-4 md:col-span-3 lg:col-span-2 xl:col-span-1"
+            key={index}
+          >
             <div
-              className="w-full group relative rounded-lg shadow-sm flex items-center justify-center h-14 col-span-1 transition-all duration-500"
+              className="w-full group relative rounded-lg shadow-sm flex items-center justify-center h-14 transition-all duration-500"
               style={{ backgroundColor: color }}
             >
               {/* Texto del color */}

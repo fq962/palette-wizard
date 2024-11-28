@@ -1,9 +1,9 @@
 import { ColorPalette } from "@/types/color-palette";
-import RecentSearches from "./RecentSearches";
 import { useEffect, useRef, useState } from "react";
 import { useRandomPlaceholder } from "@/hooks/use-random-placeholder";
 import { getColorPaletteFromLocalStorage } from "@/utils/features/color-palette-ls";
 import { PLACEHOLDERS } from "@/constants/placeholders";
+import RecentSearches from "./RecentSearches";
 import CustomLoadingMessage from "./CustomLoadingMessage";
 
 interface SearchThemeProps {

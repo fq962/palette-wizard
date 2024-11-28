@@ -5,28 +5,39 @@ const defaultMessage = "Generating color palettes... 🎨✨";
 const intervalSeconds = 1.5; // seconds
 
 export default function CustomLoadingMessage() {
-  const [loadingMessage, setLoadingMessage] = useState(defaultMessage);
-  const [, setLastIndex] = useState(0);
+  const [state, setState] = useState({
+    message: defaultMessage,
+    isFading: false,
+    index: 0,
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLastIndex((prevIndex) => {
-        const nextIndex = prevIndex + 1;
-        setLoadingMessage(
-          LOADING_MESSAGES[nextIndex % LOADING_MESSAGES.length]
-        );
-        console.log("Hola");
+      setState((prevState) => ({
+        ...prevState,
+        isFading: true, // Inicia la animación de desvanecimiento
+      }));
 
-        return nextIndex;
-      });
+      setTimeout(() => {
+        setState((prevState) => ({
+          message:
+            LOADING_MESSAGES[(prevState.index + 1) % LOADING_MESSAGES.length],
+          isFading: false, // Termina la animación al cambiar el mensaje
+          index: prevState.index + 1,
+        }));
+      }, 300); // Sincronizado con la duración de la animación
     }, intervalSeconds * 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <small className="font-sf-display opacity-75 animate-slide-up">
-      {loadingMessage}
+    <small
+      className={`font-sf-display animate-slide-up transition-opacity duration-300 ${
+        state.isFading ? "opacity-50" : "opacity-90"
+      }`}
+    >
+      {state.message}
     </small>
   );
 }
