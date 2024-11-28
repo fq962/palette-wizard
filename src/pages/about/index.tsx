@@ -133,7 +133,7 @@ export default function About() {
               alt="Product of the day"
               width={128}
               height={128}
-              className="pointer-events-none"
+              className="pointer-events-none opacity-75"
             ></Image>
           </footer>
         </main>
