@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     domains: ["avatars.githubusercontent.com"],
+    // remote patterns version
+    remotePatterns: [
+      {
+        hostname: "avatars.githubusercontent.com",
+        pathname: "/.*",
+        protocol: "https",
+      },
+    ],
   },
 };
 

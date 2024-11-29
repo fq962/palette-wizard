@@ -4,6 +4,7 @@ import { AnimatePresence } from "motion/react";
 import type { AppProps } from "next/app";
 
 import localFont from "next/font/local";
+import { Toaster } from "sonner";
 
 const sfDisplayRegular = localFont({
   src: "./fonts/SFProDisplay-Regular.woff2",
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
           className={`${sfDisplayRegular.variable} ${sfDisplayBold.variable}`}
         >
           <Component {...pageProps} />
+          <Toaster position="top-center" />
         </main>
       </Layout>
     </AnimatePresence>

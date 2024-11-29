@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface PaletteCardProps {
   color: string;
@@ -26,6 +27,14 @@ export const PaletteCard = ({
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(color);
+    toast.success("Color copied to clipboard!", {
+      position: "top-center",
+      style: {
+        backgroundColor: color,
+        color: textColor,
+        border: `1px solid ${color}`,
+      },
+    });
   };
 
   return (

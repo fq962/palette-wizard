@@ -1,5 +1,6 @@
 import { GenerateColorPalette } from "@/utils/features/GenerateColorPalette";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface SinglePaletteCardProps {
   color: string;
@@ -18,6 +19,13 @@ export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
 
   const copyToClipboard = (colorToCopy: string) => {
     navigator.clipboard.writeText(colorToCopy);
+    toast.success("Color copied to clipboard!", {
+      position: "bottom-center",
+      style: {
+        backgroundColor: colorToCopy,
+        border: `1px solid ${colorToCopy}`,
+      },
+    });
   };
 
   const palette = GenerateColorPalette({
