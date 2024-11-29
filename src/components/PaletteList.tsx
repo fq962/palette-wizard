@@ -14,9 +14,10 @@ export const PaletteList = ({
     <header>
       <h2 className="text-lg font-sf-display opacity-75">{summary}</h2>
     </header>
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+    <div className="grid grid-cols-10 gap-0 lg:gap-4 xl:gap-6">
       {colorPalette.map(({ colorHex, colorName, textColor }, idx) => (
         <PaletteCard
+          className="col-span-10 lg:col-span-5 xl:col-span-2 h-52 rounded-none md:rounded-md"
           key={idx}
           color={colorHex}
           name={colorName}
