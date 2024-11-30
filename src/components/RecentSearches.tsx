@@ -1,4 +1,5 @@
 import { ColorPalette } from "@/types/color-palette";
+import Link from "next/link";
 
 // Componente para mostrar las búsquedas recientes
 const RecentSearches = ({
@@ -45,6 +46,13 @@ const RecentSearches = ({
             </span>
           </li>
         ))}
+        <li>
+          <Link href="/my-creations">
+            <small className="opacity-75 font-sf-display">
+              View all searches ({recentPalettes.length})
+            </small>
+          </Link>
+        </li>
       </ul>
     </div>
   );
