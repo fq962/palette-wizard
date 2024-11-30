@@ -12,21 +12,21 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
   const formatTailwindTemplateV3 = (colors: Record<number, string>): string => {
     // Form of the JSON object for Tailwind CSS v3
     return (
-      `{\n  "colors": {\n    "brand": {\n` +
+      `{\n    "colors": {\n        "brand": {\n` +
       Object.entries(colors)
-        .map(([key, value]) => `      ${key}: "${value}"`)
+        .map(([key, value]) => `            ${key}: "${value}"`)
         .join(",\n") +
-      `\n    }\n  }\n}`
+      `\n           }\n       }\n   }\n `
     );
   };
 
   const formatTailwindTemplateV4 = (colors: Record<number, string>): string => {
     // Form of the JSON object for Tailwind CSS v4
     const themeTemplate = Object.entries(colors)
-      .map(([key, value]) => `  --color-brand-${key}: ${value.toLowerCase()};`)
+      .map(([key, value]) => `      --color-brand-${key}: ${value.toLowerCase()};`)
       .join("\n");
 
-    return `@theme {\n${themeTemplate}\n}`;
+    return `@theme {\n${themeTemplate}\n  }\n `;
   };
 
   const handleSwitchChange = () => {
@@ -39,12 +39,12 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
       : formatTailwindTemplateV4(colors);
 
   return (
-    <section className="w-full py-15">
+    <section className="w-full py-15 font-sf-display">
       <div className="container ">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - Text Content */}
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-sf-display-bold">
               API for Tailwind CSS
             </h1>
 
