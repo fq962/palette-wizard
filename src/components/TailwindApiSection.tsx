@@ -1,6 +1,46 @@
-export default function TailwindApiSection() {
+import useCopyToClipboard from "@/hooks/use-copy-to-clipboard";
+import { useState } from "react";
+
+interface TailwindApiSectionProps {
+  colors: Record<number, string>;
+}
+
+export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
+  const [tailwindVersion, setTailwindVersion] = useState(3);
+  const { copyToClipboard } = useCopyToClipboard();
+
+  const formatTailwindTemplateV3 = (colors: Record<number, string>): string => {
+    // Convertimos el objeto a string pero serializando manualmente
+    return (
+      `{\n  "colors": {\n    "brand": {\n` +
+      Object.entries(colors)
+        .map(([key, value]) => `      ${key}: "${value}"`)
+        .join(",\n") +
+      `\n    }\n  }\n}`
+    );
+  };
+
+  const formatTailwindTemplateV4 = (colors: Record<number, string>): string => {
+    const themeTemplate = Object.entries(colors)
+      .map(([key, value]) => `  --color-brand-${key}: ${value.toLowerCase()};`)
+      .join("\n");
+
+    return `@theme {\n${themeTemplate}\n}`;
+  };
+
+  const handleSwitchChange = () => {
+    // Alternar entre 3 y 4 cuando el switch cambia
+    setTailwindVersion(tailwindVersion === 3 ? 4 : 3);
+  };
+
+  // Generar el string del JSON dinámicamente
+  const formattedColors =
+    tailwindVersion === 3
+      ? formatTailwindTemplateV3(colors)
+      : formatTailwindTemplateV4(colors);
+
   return (
-    <section className="w-full py-12">
+    <section className="w-full py-15">
       <div className="container ">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - Text Content */}
@@ -42,19 +82,17 @@ export default function TailwindApiSection() {
                       v3
                     </span>
                   </span>
-                  <input type="checkbox" className="switch" />
+                  <input
+                    type="checkbox"
+                    className="switch"
+                    onClick={() => handleSwitchChange()}
+                  />
                   <span className="label cursor-pointer flex-col items-start">
                     <span className="label-text text-base text-gray-500">
                       v4
                     </span>
                   </span>
                 </label>
-                {/* <div className="flex rounded-lg border">
-                  <button className="bg-primary px-3 py-1 text-sm text-primary-foreground">
-                    3
-                  </button>
-                  <button className="px-3 py-1 text-sm">4</button>
-                </div> */}
               </div>
               <div className="space-y-1.5">
                 <p className="text-md text-gray-500">
@@ -72,28 +110,16 @@ export default function TailwindApiSection() {
                 id="clipboard-source-code"
                 className="horizontal-scrollbar text-sm"
               >
-                <code>
-                  {`{
-    "colors": {
-      "brand": {
-        50: "#FFEFDB",
-        100: "#FFDFB8",
-        200: "#FFC175",
-        300: "#FFA12E",
-        400: "#EB8100",
-        500: "#A35A00",
-        600: "#854900",
-        700: "#613500",
-        800: "#422400",
-        900: "#1F1100",
-        950: "#0F0800"
-    }
-  }
-}`}
-                </code>
+                <code>{formattedColors}</code>
               </pre>
               <button
                 type="button"
+                onClick={() =>
+                  copyToClipboard({
+                    textToCopy: formattedColors,
+                    isGeneralText: true,
+                  })
+                }
                 className="copy-clipboard tooltip absolute end-2 top-2 [--is-toggle-tooltip:false]"
                 aria-label="Copy text to clipboard"
                 data-clipboard-target="#clipboard-source-code"
@@ -119,4 +145,4 @@ export default function TailwindApiSection() {
       </div>
     </section>
   );
-}
+};
