@@ -7,6 +7,7 @@ import { Title } from "@/components/Title";
 import { SinglePaletteCard } from "@/components/UI/SinglePaletteCard";
 import { useColorPalette } from "@/hooks/use-color-palette";
 import { useSelectedColor } from "@/hooks/use-selected-color";
+import TailwindApiSection from "@/components/TealwindApiSection";
 
 export default function Home() {
   const { colorPalette, setColorPalette, fetchingPalette, handleSearch } =
@@ -35,6 +36,7 @@ export default function Home() {
           />
         )}
         {selectedColor && <SinglePaletteCard color={selectedColor} />}
+        <TailwindApiSection />
       </Hero>
     </motion.div>
   );
