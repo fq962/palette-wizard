@@ -1,6 +1,7 @@
 import { GenerateColorPalette } from "@/utils/features/GenerateColorPalette";
 import { useState } from "react";
-import { toast } from "sonner";
+import { TailwindApiSection } from "../TailwindApiSection";
+import useCopyToClipboard from "@/hooks/use-copy-to-clipboard";
 
 interface SinglePaletteCardProps {
   color: string;
@@ -8,24 +9,14 @@ interface SinglePaletteCardProps {
 
 export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
   const [copiedCardIndex, setCopiedCardIndex] = useState<number | null>(null);
+  const { copyToClipboard } = useCopyToClipboard();
 
   const handleCopyClick = (color: string, index: number) => {
     setCopiedCardIndex(index); // Registrar el card copiado
-    copyToClipboard(color); // Copiar al portapapeles
+    copyToClipboard({ textToCopy: color, isGeneralText: false });
     setTimeout(() => {
       setCopiedCardIndex(null); // Regresar al estado inicial después de 1.5 segundos
     }, 1000);
-  };
-
-  const copyToClipboard = (colorToCopy: string) => {
-    navigator.clipboard.writeText(colorToCopy);
-    toast.success("Color copied to clipboard!", {
-      className: "font-sf-display bg-white opacity-75 hidden xl:flex",
-      position: "bottom-center",
-      style: {
-        border: `1px solid ${colorToCopy}`,
-      },
-    });
   };
 
   const palette = GenerateColorPalette({
@@ -35,7 +26,7 @@ export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
   const colors: Record<number, string> = palette ? palette.colors.brand : {};
 
   return (
-    <div className="w-full flex items-center pt-8">
+    <div className="w-full flex items-center pt-8 flex-col gap-3">
       <div className="grid grid-cols-12 xl:grid-cols-11 gap-2 w-full">
         {Object.entries(colors).map(([index, color]) => (
           <article
@@ -70,6 +61,7 @@ export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
           </article>
         ))}
       </div>
+      <TailwindApiSection colors={colors} />
     </div>
   );
 };
