@@ -10,7 +10,7 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
   const { copyToClipboard } = useCopyToClipboard();
 
   const formatTailwindTemplateV3 = (colors: Record<number, string>): string => {
-    // Convertimos el objeto a string pero serializando manualmente
+    // Form of the JSON object for Tailwind CSS v3
     return (
       `{\n  "colors": {\n    "brand": {\n` +
       Object.entries(colors)
@@ -21,6 +21,7 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
   };
 
   const formatTailwindTemplateV4 = (colors: Record<number, string>): string => {
+    // Form of the JSON object for Tailwind CSS v4
     const themeTemplate = Object.entries(colors)
       .map(([key, value]) => `  --color-brand-${key}: ${value.toLowerCase()};`)
       .join("\n");
@@ -29,11 +30,9 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
   };
 
   const handleSwitchChange = () => {
-    // Alternar entre 3 y 4 cuando el switch cambia
     setTailwindVersion(tailwindVersion === 3 ? 4 : 3);
   };
 
-  // Generar el string del JSON dinámicamente
   const formattedColors =
     tailwindVersion === 3
       ? formatTailwindTemplateV3(colors)
