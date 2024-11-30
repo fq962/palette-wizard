@@ -1,11 +1,18 @@
 import { getRandomAnimation } from "@/utils/animations/RandomAnimateTittle";
 import { motion } from "motion/react";
+import { useRouter } from "next/router";
 
 export const Title = () => {
   const mesActual = new Date().getMonth() + 1;
+  const router = useRouter();
+
+  const handleClickOnLogo = () => router.push("/");
 
   return (
-    <div className="flex items-center justify-center">
+    <div
+      className="flex items-center justify-center cursor-pointer"
+      onClick={handleClickOnLogo}
+    >
       <span className="flex flex-col relative group">
         <h4 className="text-4xl font-sf-display-bold opacity-85 absolute group-hover:scale-105 group-hover:-translate-x-1.5 transition-transform duration-150 ease-in">
           <span className={`${mesActual === 11 ? "text-[#cc0c39]" : ""}`}>
