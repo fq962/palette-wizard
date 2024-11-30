@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function CreditsAndLinks() {
+export default function CreditsAndLinks(
+  { className }: { className?: string } = { className: "" }
+) {
   const pathname = usePathname();
 
   return (
-    <small className="flex font-sf-display gap-2 opacity-75">
+    <small className={`flex font-sf-display gap-2 opacity-75 ${className}`}>
       <a href="https://openai.com/">Powered by OpenAI&apos;s GPT-4o</a>
       <span>|</span>
       <a href="https://creativecommons.org/licenses/by/4.0/">

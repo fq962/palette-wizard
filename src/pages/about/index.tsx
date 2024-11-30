@@ -127,7 +127,8 @@ export default function About() {
             something we&apos;re truly proud of—and we&apos;re excited to share
             it with you.
           </p>
-          <footer className="flex justify-center my-12">
+          {/* Soon :'3 */}
+          {/* <footer className="flex justify-center my-12">
             <Image
               src="https://cdn.prod.website-files.com/6335b33630f88833a92915fc/63ee477e4688e939cf07c4c3_phbadge.svg"
               alt="Product of the day"
@@ -135,7 +136,7 @@ export default function About() {
               height={128}
               className="pointer-events-none opacity-75"
             ></Image>
-          </footer>
+          </footer> */}
         </main>
       </Hero>
     </motion.div>
