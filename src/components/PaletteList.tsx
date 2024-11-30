@@ -26,5 +26,8 @@ export const PaletteList = ({
         />
       ))}
     </div>
+    <footer>
+      <small className="font-sf-display opacity-75">click on a color to see its shades</small>
+    </footer>
   </main>
 );
