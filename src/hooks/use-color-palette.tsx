@@ -5,6 +5,8 @@ import { getPaletteByQuery } from "@/services/get-palette-by-query";
 import {
   addColorPaletteToLocalStorage,
   getColorPaletteFromLocalStorage,
+  getUniqueColorPaletteToLocalStorage,
+  removeUniqueColorPaletteFromLocalStorage,
 } from "@/utils/features/color-palette-ls";
 
 export const useColorPalette = () => {
@@ -38,7 +40,14 @@ export const useColorPalette = () => {
 
   useEffect(() => {
     const palettes = getColorPaletteFromLocalStorage();
-    if (palettes && palettes.length > 0) {
+    const uniquePalette = getUniqueColorPaletteToLocalStorage();
+
+    console.log({ uniquePalette });
+
+    if (uniquePalette) {
+      setColorPalette(uniquePalette);
+      setTimeout(removeUniqueColorPaletteFromLocalStorage, 1000);
+    } else if (palettes && palettes.length > 0) {
       setColorPalette(palettes[0]);
     }
   }, []);

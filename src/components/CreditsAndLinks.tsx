@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function CreditsAndLinks(
   { className }: { className?: string } = { className: "" }
 ) {
-  const pathname = usePathname();
-
   return (
     <small className={`flex font-sf-display gap-2 opacity-75 ${className}`}>
       <a href="https://openai.com/">Powered by OpenAI&apos;s GPT-4o</a>
@@ -14,11 +11,11 @@ export default function CreditsAndLinks(
         Creative Commons
       </a>
       <span>|</span>
-      {pathname === "/about" ? (
-        <Link href="/">Home</Link>
-      ) : (
-        <Link href="/about">About</Link>
-      )}
+      <Link href="/">Home</Link>
+      <span>|</span>
+      <Link href="/about">About</Link>
+      <span>|</span>
+      <Link href="/my-creations">My Creations</Link>
     </small>
   );
 }

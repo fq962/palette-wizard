@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
           className={`${sfDisplayRegular.variable} ${sfDisplayBold.variable}`}
         >
           <Component {...pageProps} />
-          <Toaster position="top-center" />
+          <Toaster />
         </main>
       </Layout>
     </AnimatePresence>

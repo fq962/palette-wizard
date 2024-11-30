@@ -1,6 +1,7 @@
 import { ColorPalette } from "@/types/color-palette";
 
 const PALETTE_COLOR_KEY = "palettes";
+const UNIQUE_PALETTE_COLOR_KEY = "unique-palette";
 
 export const addColorPaletteToLocalStorage = (palette: ColorPalette) => {
   const palettes = getColorPaletteFromLocalStorage() || [];
@@ -21,4 +22,22 @@ export const getColorPaletteFromLocalStorage = (): ColorPalette[] | null => {
   }
 
   return null;
+};
+
+export const getUniqueColorPaletteToLocalStorage = (): ColorPalette | null => {
+  const palette = localStorage.getItem(UNIQUE_PALETTE_COLOR_KEY);
+
+  if (palette) {
+    return JSON.parse(palette);
+  }
+
+  return null;
+};
+
+export const setUniqueColorPaletteToLocalStorage = (palette: ColorPalette) => {
+  localStorage.setItem(UNIQUE_PALETTE_COLOR_KEY, JSON.stringify(palette));
+};
+
+export const removeUniqueColorPaletteFromLocalStorage = () => {
+  localStorage.removeItem(UNIQUE_PALETTE_COLOR_KEY);
 };
