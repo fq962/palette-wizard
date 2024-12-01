@@ -1,6 +1,7 @@
 import useCopyToClipboard from "@/hooks/use-copy-to-clipboard";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface PaletteCardProps {
   color: string;
@@ -22,7 +23,14 @@ export const PaletteCard = ({
 
   const handleCopyClick = () => {
     setIsCopied(true); // Mostrar "Copied"
-    copyToClipboard({ textToCopy: color, isGeneralText: false }); // Copiar al portapapeles
+    copyToClipboard({ textToCopy: color });
+    toast.success("Color copied to clipboard!", {
+      className: "font-sf-display bg-white opacity-75 hidden xl:flex",
+      position: "bottom-center",
+      style: {
+        border: `1px solid ${color}`,
+      },
+    });
     setTimeout(() => {
       setIsCopied(false); // Volver al ícono después de 1.5 segundos
     }, 800);

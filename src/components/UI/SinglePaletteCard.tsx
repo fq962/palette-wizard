@@ -2,6 +2,7 @@ import { GenerateColorPalette } from "@/utils/features/GenerateColorPalette";
 import { useState } from "react";
 import { TailwindApiSection } from "../TailwindApiSection";
 import useCopyToClipboard from "@/hooks/use-copy-to-clipboard";
+import { toast } from "sonner";
 
 interface SinglePaletteCardProps {
   color: string;
@@ -13,7 +14,15 @@ export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
 
   const handleCopyClick = (color: string, index: number) => {
     setCopiedCardIndex(index); // Registrar el card copiado
-    copyToClipboard({ textToCopy: color, isGeneralText: false });
+    copyToClipboard({ textToCopy: color });
+
+    toast.success("Color copied to clipboard!", {
+      className: "font-sf-display bg-white opacity-75 hidden xl:flex",
+      position: "bottom-center",
+      style: {
+        border: `1px solid ${color}`,
+      },
+    });
     setTimeout(() => {
       setCopiedCardIndex(null); // Regresar al estado inicial después de 1.5 segundos
     }, 1000);

@@ -20,15 +20,17 @@ const sfDisplayBold = localFont({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AnimatePresence mode="wait">
-      <Layout>
-        <main
-          className={`${sfDisplayRegular.variable} ${sfDisplayBold.variable}`}
-        >
-          <Component {...pageProps} />
-          <Toaster />
-        </main>
-      </Layout>
-    </AnimatePresence>
+    <>
+      <Toaster />
+      <AnimatePresence mode="wait">
+        <Layout>
+          <main
+            className={`${sfDisplayRegular.variable} ${sfDisplayBold.variable}`}
+          >
+            <Component {...pageProps} />
+          </main>
+        </Layout>
+      </AnimatePresence>
+    </>
   );
 }

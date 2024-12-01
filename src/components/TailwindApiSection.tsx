@@ -1,5 +1,6 @@
 import useCopyToClipboard from "@/hooks/use-copy-to-clipboard";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface TailwindApiSectionProps {
   colors: Record<number, string>;
@@ -23,7 +24,9 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
   const formatTailwindTemplateV4 = (colors: Record<number, string>): string => {
     // Form of the JSON object for Tailwind CSS v4
     const themeTemplate = Object.entries(colors)
-      .map(([key, value]) => `      --color-brand-${key}: ${value.toLowerCase()};`)
+      .map(
+        ([key, value]) => `      --color-brand-${key}: ${value.toLowerCase()};`
+      )
       .join("\n");
 
     return `@theme {\n${themeTemplate}\n  }\n `;
@@ -31,6 +34,14 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
 
   const handleSwitchChange = () => {
     setTailwindVersion(tailwindVersion === 3 ? 4 : 3);
+  };
+
+  const handleCopyColorToClipboard = () => {
+    copyToClipboard({ textToCopy: formattedColors });
+    toast.success("Copied to clipboard!", {
+      className: "font-sf-display bg-white opacity-75 hidden xl:flex",
+      position: "bottom-center",
+    });
   };
 
   const formattedColors =
@@ -113,12 +124,7 @@ export const TailwindApiSection = ({ colors }: TailwindApiSectionProps) => {
               </pre>
               <button
                 type="button"
-                onClick={() =>
-                  copyToClipboard({
-                    textToCopy: formattedColors,
-                    isGeneralText: true,
-                  })
-                }
+                onClick={() => handleCopyColorToClipboard()}
                 className="copy-clipboard tooltip absolute end-2 top-2 [--is-toggle-tooltip:false]"
                 aria-label="Copy text to clipboard"
                 data-clipboard-target="#clipboard-source-code"
