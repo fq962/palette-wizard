@@ -37,6 +37,31 @@ export const PaletteCard = ({
     }, 800);
   };
 
+  const handleLockColor = (isLocked: boolean, colorLocked: string) => {
+    setLocked(isLocked);
+    // Obtener los colores almacenados en el Local Storage
+    const storedColors = JSON.parse(
+      localStorage.getItem("colorsLocked") || "[]"
+    );
+
+    // Verifica que sea un array válido
+    if (!Array.isArray(storedColors)) return;
+
+    // Actualizar o agregar el color al array
+    const updatedColors = storedColors.map(
+      (item: { colorLocked: string; isLocked: boolean }) =>
+        item.colorLocked === colorLocked ? { ...item, isLocked } : item
+    );
+
+    // Si el color no existe, agregarlo al array
+    if (!updatedColors.some((item) => item.colorLocked === colorLocked)) {
+      updatedColors.push({ colorLocked, isLocked });
+    }
+
+    // Guarda el array actualizado en Local Storage
+    localStorage.setItem("colorsLocked", JSON.stringify(updatedColors));
+  };
+
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -75,7 +100,7 @@ export const PaletteCard = ({
         {!isLocked && (
           <span
             className={`opacity-0 group-hover:opacity-80 translate-y-[15px] icon-[tabler--lock-open] text-base-content/80 size-6 transition-all duration-150 absolute bottom-8 cursor-pointer`}
-            onClick={() => setLocked(true)} // Bloquea al hacer clic
+            onClick={() => handleLockColor(true, color)}
             style={{ color: textColor }}
           ></span>
         )}
@@ -83,7 +108,7 @@ export const PaletteCard = ({
         {isLocked && (
           <span
             className={`opacity-100 translate-y-[15px] icon-[tabler--lock] text-base-content/80 size-6 transition-all duration-150 absolute bottom-8 cursor-pointer`}
-            onClick={() => setLocked(false)} // Desbloquea al hacer clic
+            onClick={() => handleLockColor(false, color)}
             style={{ color: textColor }}
           ></span>
         )}
