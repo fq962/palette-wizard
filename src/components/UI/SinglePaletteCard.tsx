@@ -43,7 +43,7 @@ export const SinglePaletteCard = ({ color }: SinglePaletteCardProps) => {
             key={index}
           >
             <div
-              className="w-full group relative rounded-lg shadow-sm flex items-center justify-center h-14 transition-all duration-150"
+              className="w-full group relative rounded-lg shadow-flat flex items-center justify-center h-14 transition-all duration-150"
               style={{ backgroundColor: color }}
             >
               {/* Texto del color */}
