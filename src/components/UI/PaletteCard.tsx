@@ -19,6 +19,7 @@ export const PaletteCard = ({
   className,
 }: PaletteCardProps) => {
   const [isCopied, setIsCopied] = useState(false);
+  const [isLocked, setLocked] = useState(false);
   const { copyToClipboard } = useCopyToClipboard();
 
   const handleCopyClick = () => {
@@ -71,6 +72,22 @@ export const PaletteCard = ({
           onClick={handleCopyClick}
           style={{ color: textColor }}
         ></span>
+        {!isLocked && (
+          <span
+            className={`opacity-0 group-hover:opacity-80 translate-y-[15px] icon-[tabler--lock-open] text-base-content/80 size-6 transition-all duration-150 absolute bottom-8 cursor-pointer`}
+            onClick={() => setLocked(true)} // Bloquea al hacer clic
+            style={{ color: textColor }}
+          ></span>
+        )}
+        {/* Icono de bloqueo, visible de forma fija solo si está bloqueado */}
+        {isLocked && (
+          <span
+            className={`opacity-100 translate-y-[15px] icon-[tabler--lock] text-base-content/80 size-6 transition-all duration-150 absolute bottom-8 cursor-pointer`}
+            onClick={() => setLocked(false)} // Desbloquea al hacer clic
+            style={{ color: textColor }}
+          ></span>
+        )}
+
         {isCopied && (
           <span
             className="opacity-80 font-bold translate-y-[-20px] -rotate-6 text-base-content/80 absolute bottom-8 transition-opacity duration-150 animate-chibolita-exit"
