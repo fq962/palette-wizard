@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useRouter } from "next/router";
 
 export const Title = () => {
+  //TODO! REFACTOR PARA CAMBIAR LA VALIDACION DE 11 y 12 QUE SEA UNA FUNCION/STATE QUE DEVUELVA UN BOOLEAN
   const mesActual = new Date().getMonth() + 1;
   const router = useRouter();
 
@@ -15,7 +16,11 @@ export const Title = () => {
     >
       <span className="flex flex-col relative group">
         <h4 className="text-4xl font-sf-display-bold opacity-85 absolute group-hover:scale-105 group-hover:-translate-x-1.5 transition-transform duration-150 ease-in">
-          <span className={`${mesActual === 11 ? "text-[#cc0c39]" : ""}`}>
+          <span
+            className={`${
+              mesActual === 11 || mesActual === 12 ? "text-[#cc0c39]" : ""
+            }`}
+          >
             pale
           </span>
           {/* Esta T, no se muestra, solo es por un error mierda raro de TW */}
@@ -24,25 +29,29 @@ export const Title = () => {
           </span>
           <span
             className={`${
-              mesActual === 11 ? "text-[#795548]" : ""
+              mesActual === 11 || mesActual === 12 ? "text-[#795548]" : ""
             } ml-2 -translate-y-1.5 rotate-[12deg] inline-block`}
           >
             t
           </span>
           <span
             className={`${
-              mesActual === 11 ? "text-[#795548]" : ""
+              mesActual === 11 || mesActual === 12 ? "text-[#795548]" : ""
             } ml-2 -translate-y-1.5 rotate-[-12deg] inline-block`}
           >
             t
           </span>
-          <span className={`${mesActual === 11 ? "text-[#cc0c39]" : ""} ml-2`}>
+          <span
+            className={`${
+              mesActual === 11 || mesActual === 12 ? "text-[#cc0c39]" : ""
+            } ml-2`}
+          >
             e
           </span>
         </h4>
         <h2
           className={`${
-            mesActual === 11 ? "text-[#085749]" : ""
+            mesActual === 11 || mesActual === 12 ? "text-[#085749]" : ""
           } text-8xl font-sf-display-bold mt-3 ml-2 group-hover:scale-105 transition-transform duration-150 ease-in`}
         >
           {"wizard".split("").map((char, index) => (
