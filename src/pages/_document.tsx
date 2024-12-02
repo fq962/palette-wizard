@@ -6,7 +6,7 @@ export default function Document() {
   return (
     <Html lang="en" className="bg-transparent" data-theme="light">
       <Head>
-        {mesActual === 11 && (
+        {(mesActual === 11 || mesActual === 12) && (
           <>
             <script defer src="https://app.embed.im/snow.js"></script>
             <style>
