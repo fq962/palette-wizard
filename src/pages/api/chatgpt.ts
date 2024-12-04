@@ -44,26 +44,31 @@ export default async function handler(
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
                 textColor: "#FFFFFF",
+                isLocked: false,
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
                 textColor: "#FFFFFF",
+                isLocked: false,
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
                 textColor: "#FFFFFF",
+                isLocked: false,
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
                 textColor: "#000000",
+                isLocked: false,
                 },
                 {
                 colorHex: "#HEXCODE",
                 colorName: "ColorName",
                 textColor: "#000000",
+                isLocked: false,
                 },
             ],
         }

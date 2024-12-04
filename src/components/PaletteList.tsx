@@ -4,13 +4,11 @@ import { PaletteCard } from "./UI/PaletteCard";
 interface PaletteListProps {
   palette: ColorPalette;
   onSelectColor: (color: string) => void; // Nuevo callback para manejar la selección
-  onLockColor: (color: string) => void; // Nuevo callback
 }
 
 export const PaletteList = ({
   palette: { colorPalette, summary },
   onSelectColor,
-  onLockColor,
 }: PaletteListProps) => (
   <main className="flex flex-col gap-2">
     <header>
@@ -25,7 +23,6 @@ export const PaletteList = ({
           name={colorName}
           textColor={textColor}
           onSelectColor={onSelectColor}
-          onLockColor={onLockColor}
         />
       ))}
     </div>
