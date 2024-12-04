@@ -8,6 +8,7 @@ interface PaletteCardProps {
   name: string;
   textColor: string;
   onSelectColor: (color: string) => void; // Nuevo callback para manejar el clic
+  onLockColor: (color: string) => void; // Nuevo callback
   className?: string;
 }
 
@@ -17,6 +18,7 @@ export const PaletteCard = ({
   textColor,
   onSelectColor,
   className,
+  onLockColor,
 }: PaletteCardProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const [isLocked, setLocked] = useState(false);
@@ -39,6 +41,7 @@ export const PaletteCard = ({
 
   const handleLockColor = (isLocked: boolean, colorLocked: string) => {
     setLocked(isLocked);
+    onLockColor(color); // Llama al callback con el color actual
     // Obtener los colores almacenados en el Local Storage
     const storedColors = JSON.parse(
       localStorage.getItem("colorsLocked") || "[]"

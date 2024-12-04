@@ -11,6 +11,7 @@ import {
 
 export const useColorPalette = () => {
   const [colorPalette, setColorPalette] = useState<ColorPalette | null>(null);
+  const [lockedColors, setLockedColors] = useState<string[]>([]); // Estado para colores bloqueados
   const [fetchingPalette, setFetchingPalette] = useState(false);
 
   const handleSearch = async (query: string) => {
@@ -21,7 +22,11 @@ export const useColorPalette = () => {
       const paletteColor = await getPaletteByQuery(query);
 
       if (paletteColor.success) {
-        setColorPalette(paletteColor.response);
+        const updatedPalette = integrateLockedColors(
+          paletteColor.response,
+          lockedColors
+        );
+        setColorPalette(updatedPalette);
       } else {
         console.error(paletteColor.message);
       }
@@ -30,6 +35,40 @@ export const useColorPalette = () => {
     } finally {
       setFetchingPalette(false);
     }
+  };
+
+  const toggleLockColor = (color: string) => {
+    setLockedColors((prev) =>
+      prev.includes(color)
+        ? prev.filter((lockedColor) => lockedColor !== color)
+        : [...prev, color]
+    );
+  };
+
+  const integrateLockedColors = (
+    newPalette: ColorPalette,
+    lockedColors: string[]
+  ): ColorPalette => {
+    if (!newPalette.colorPalette) return newPalette;
+
+    // Crear una nueva paleta integrando los colores bloqueados
+    const updatedPaletteColors = newPalette.colorPalette.map(
+      (colorData, idx) => {
+        const lockedColor = lockedColors[idx];
+        return lockedColor
+          ? {
+              colorHex: lockedColor,
+              colorName: "Locked", // O cualquier nombre adecuado
+              textColor: "#000000", // Texto negro o ajustado según sea necesario
+            }
+          : colorData;
+      }
+    );
+
+    return {
+      ...newPalette,
+      colorPalette: updatedPaletteColors,
+    };
   };
 
   useEffect(() => {
@@ -57,5 +96,6 @@ export const useColorPalette = () => {
     setColorPalette,
     fetchingPalette,
     handleSearch,
+    toggleLockColor,
   };
 };

@@ -10,8 +10,13 @@ import { useSelectedColor } from "@/hooks/use-selected-color";
 // import TailwindApiSection from "@/components/TailwindApiSection";
 
 export default function Home() {
-  const { colorPalette, setColorPalette, fetchingPalette, handleSearch } =
-    useColorPalette();
+  const {
+    colorPalette,
+    setColorPalette,
+    fetchingPalette,
+    handleSearch,
+    toggleLockColor,
+  } = useColorPalette();
 
   const { selectedColor, toggleSelectedColor } = useSelectedColor();
 
@@ -33,6 +38,7 @@ export default function Home() {
           <PaletteList
             palette={colorPalette}
             onSelectColor={toggleSelectedColor}
+            onLockColor={toggleLockColor} // Pasa el callback aquí
           />
         )}
         {selectedColor && <SinglePaletteCard color={selectedColor} />}
