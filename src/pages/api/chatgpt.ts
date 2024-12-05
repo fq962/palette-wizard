@@ -17,7 +17,6 @@ export default async function handler(
     if (!message) {
       return res.status(400).json({ error: "Faltan datos requeridos" });
     }
-    console.log(message);
 
     try {
       // Realizar la solicitud a OpenAI

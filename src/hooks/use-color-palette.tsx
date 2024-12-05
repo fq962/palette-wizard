@@ -1,9 +1,8 @@
 // useColorPalette.ts
 import { useState, useEffect } from "react";
-import { ColorPalette } from "@/types/color-palette";
+import { ColorPalette, ColorPaletteEntry } from "@/types/color-palette";
 import { getPaletteByQuery } from "@/services/get-palette-by-query";
 import {
-  addColorPaletteToLocalStorage,
   getColorPaletteFromLocalStorage,
   getUniqueColorPaletteToLocalStorage,
   removeUniqueColorPaletteFromLocalStorage,
@@ -21,12 +20,16 @@ export const useColorPalette = () => {
       const paletteColor = await getPaletteByQuery(query);
 
       if (paletteColor.success) {
-        localStorage.setItem(
-          "colorsLocked",
-          JSON.stringify(paletteColor.response.colorPalette)
+        const mergedPalette = mergeColorPalette(
+          paletteColor.response.colorPalette
         );
 
-        setColorPalette(paletteColor.response);
+        localStorage.setItem("colorsLocked", JSON.stringify(mergedPalette));
+
+        setColorPalette({
+          ...paletteColor.response,
+          colorPalette: mergedPalette, // Usar la nueva paleta generada
+        });
       } else {
         console.error(paletteColor.message);
       }
@@ -37,17 +40,38 @@ export const useColorPalette = () => {
     }
   };
 
-  useEffect(() => {
-    if (colorPalette) {
-      addColorPaletteToLocalStorage(colorPalette);
-    }
-  }, [colorPalette]);
+  const mergeColorPalette = (newColorPalette: ColorPaletteEntry[]) => {
+    const localStoragePalette: ColorPaletteEntry[] = JSON.parse(
+      localStorage.getItem("colorsLocked") || "[]"
+    );
+
+    // Mantener los colores bloqueados
+    const lockedColors = localStoragePalette.filter((color) => color.isLocked);
+
+    // Reemplazar colores desbloqueados por los del JSON recibido
+    const updatedColors = localStoragePalette.map((color, index) => {
+      if (color.isLocked) {
+        // Si está bloqueado, se conserva
+        return color;
+      }
+      // Si no está bloqueado, se toma del recibido, manteniendo el orden
+      return newColorPalette[index];
+    });
+
+    // Asegurarse de que los colores bloqueados están en su posición original
+    lockedColors.forEach((lockedColor) => {
+      const index = localStoragePalette.findIndex(
+        (color) => color.colorHex === lockedColor.colorHex
+      );
+      updatedColors[index] = lockedColor;
+    });
+
+    return updatedColors.slice(0, localStoragePalette.length);
+  };
 
   useEffect(() => {
     const palettes = getColorPaletteFromLocalStorage();
     const uniquePalette = getUniqueColorPaletteToLocalStorage();
-
-    console.log({ uniquePalette });
 
     if (uniquePalette) {
       setColorPalette(uniquePalette);

@@ -7,4 +7,5 @@ export interface ColorPaletteEntry {
   colorHex: string;
   colorName: string;
   textColor: string;
+  isLocked: boolean;
 }
