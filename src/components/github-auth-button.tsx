@@ -1,18 +1,11 @@
-"use client";
-
-import { supabase } from "@/lib/supabase-client";
-import {
-  // createClientComponentClient,
-  Session,
-} from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/browser-client";
+import { Session } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 
 export default function GitHubAuthButton() {
   const [session, setSession] = useState<Session | null>(null);
-  // const supabase = createClientComponentClient({
-  //   supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-  //   supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  // });
+
+  const supabase = createClient();
 
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
@@ -25,17 +18,18 @@ export default function GitHubAuthButton() {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+    handleSession();
+  };
+
+  const handleSession = async () => {
+    const { data } = await supabase.auth.getSession();
+    console.log({ session: data.session });
+
+    setSession(data.session);
   };
 
   useEffect(() => {
-    const getSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      console.log({ session: data.session });
-
-      setSession(data.session);
-    };
-
-    getSession();
+    handleSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

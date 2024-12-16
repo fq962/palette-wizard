@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { createClient } from "@/lib/supabase/server-client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/supabase-client";
 
 export const dynamic = "force-dynamic";
 
@@ -12,11 +12,28 @@ export default async function handler(
 }
 
 async function GET(req: NextApiRequest, res: NextApiResponse) {
-  const { code } = req.query as { code: string };
+  const supabase = createClient(req, res);
+
+  const { code } = req.query as {
+    code: string;
+  };
 
   if (code) {
-    await supabase.auth.exchangeCodeForSession(code);
+    const {
+      data: { session, user },
+      error,
+    } = await supabase.auth.exchangeCodeForSession(code);
+
+    console.log({ error });
+    console.log({ session, user });
+
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ error: error.message });
+    }
+
+    console.log({ user, session });
   }
 
-  res.redirect(req.headers.origin || "/");
+  res.redirect("/");
 }

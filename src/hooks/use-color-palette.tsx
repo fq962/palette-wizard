@@ -42,8 +42,6 @@ export const useColorPalette = () => {
     const palettes = getColorPaletteFromLocalStorage();
     const uniquePalette = getUniqueColorPaletteToLocalStorage();
 
-    console.log({ uniquePalette });
-
     if (uniquePalette) {
       setColorPalette(uniquePalette);
       setTimeout(removeUniqueColorPaletteFromLocalStorage, 1000);
