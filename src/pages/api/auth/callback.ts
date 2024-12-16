@@ -19,21 +19,13 @@ async function GET(req: NextApiRequest, res: NextApiResponse) {
   };
 
   if (code) {
-    const {
-      data: { session, user },
-      error,
-    } = await supabase.auth.exchangeCodeForSession(code);
-
-    console.log({ error });
-    console.log({ session, user });
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (error) {
       console.error(error);
       return res.status(500).json({ error: error.message });
     }
-
-    console.log({ user, session });
   }
 
-  res.redirect("/");
+  res.redirect("/profile");
 }

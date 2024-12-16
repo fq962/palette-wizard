@@ -41,13 +41,11 @@ export default function CreditsAndLinks(
       >
         My Creations
       </Link>
-      <span className="opacity-25">|</span>
+      {/* <span className="opacity-25">|</span>
       <Link
         className="opacity-75 hover:opacity-90 transition-all duration-150 ease-in-out"
         href="/join-us"
-      >
-        Join Us
-      </Link>
+      ></Link> */}
     </small>
   );
 }
